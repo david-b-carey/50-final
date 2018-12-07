@@ -1,0 +1,53 @@
+<!-- Whereas much of the code is based off the staff's implementation of finance, this html is based off the staff's implementation of survey -->
+{% extends "layout.html" %}
+
+{% block title %}
+    Student Survey
+{% endblock %}
+
+{% block main %}
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">Food Ratings Survey</h1>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/student_survey" method="post">
+
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Confirm Account Password" type="password">
+        </div>
+
+        <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+        <h4 class="mb-3">Lunch: {{ lunch }}</h4>
+
+        <div class="form-group">
+            <select class="form-control" name="lunch">
+                <option disabled selected value="">Rate This Meal</option>
+                <option value="0">0 (Did Not Eat)</option>
+                <option value="1">1 (Very Bad)</option>
+                <option value="2">2</option>
+                <option value="3">3 (Average)</option>
+                <option value="4">4</option>
+                <option value="5">5 (Very Good)</option>
+            </select>
+        </div>
+
+        <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+        <h4 class="mb-3">Dinner: {{ dinner }}</h4>
+
+        <div class="form-group">
+            <select class="form-control" name="dinner">
+                <option disabled selected value="">Rate This Meal</option>
+                <option value="0">0 (Did Not Eat)</option>
+                <option value="1">1 (Very Bad)</option>
+                <option value="2">2</option>
+                <option value="3">3 (Average)</option>
+                <option value="4">4</option>
+                <option value="5">5 (Very Good)</option>
+            </select>
+        </div>
+
+        <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    </form>
+{% endblock %}

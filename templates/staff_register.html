@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Staff Register
+{% endblock %}
+
+{% block main %}
+
+    <p>Staff Registration</p>
+    <form action="/staff_register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Password (again)" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Staff Register</button>
+    </form>
+
+    <script>
+
+        document.querySelector('form').onsubmit = function(e)
+        {
+            e.preventDefault();
+            $.get('/staff_check', {username: document.querySelector('input[name=username]').value}, function(data)
+            {
+                if (data)
+                {
+                    document.querySelector('form').submit();
+                }
+                else
+                {
+                    alert('Username is not available');
+                }
+            });
+        };
+
+    </script>
+
+{% endblock %}

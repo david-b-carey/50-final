@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- documentation at http://getbootstrap.com/docs/4.1/, alternative themes at https://bootswatch.com/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- https://favicon.io/emoji-favicons/money-mouth-face/ -->
+        <link href="/static/favicon.ico" rel="icon">
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <title>Better Bites @ Berg: {% block title %}{% endblock %}</title>
+
+        <script>
+            window.onload = function () {
+
+            //Better to construct options first and then pass it as a parameter
+            var options = {
+	        title: {
+		    text: "Column Chart for {{ lunch }} Ratings"
+            },
+            data: [
+            {
+	        // Change type to "doughnut", "line", "splineArea", etc.
+		    type: "column",
+	        dataPoints: [
+		    { label: "1 (Very Bad)",  y: {{ lunch_1 }}  },
+		    { label: "2", y: {{ lunch_2 }}  },
+		    { label: "3 (Average)", y: {{ lunch_3 }}  },
+		    { label: "4",  y: {{ lunch_4 }}  },
+		    { label: "5 (Very Good)",  y: {{ lunch_5 }}  }
+	        ]
+            }
+            ]
+            };
+
+            $("#lunch-ratings").CanvasJSChart(options);
+
+            //Better to construct options first and then pass it as a parameter
+            var options = {
+	        title: {
+		    text: "Column Chart for {{ dinner }} Ratings"
+            },
+            data: [
+            {
+	        // Change type to "doughnut", "line", "splineArea", etc.
+		    type: "column",
+	        dataPoints: [
+		    { label: "1 (Very Bad)",  y: {{ dinner_1 }}  },
+		    { label: "2", y: {{ dinner_2 }}  },
+		    { label: "3 (Average)", y: {{ dinner_3 }}  },
+		    { label: "4",  y: {{ dinner_4 }}  },
+		    { label: "5 (Very Good)",  y: {{ dinner_5 }}  }
+	        ]
+            }
+            ]
+            };
+
+            $("#dinner-ratings").CanvasJSChart(options);
+            }
+        </script>
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-light bg-light border">
+            <a class="navbar-brand" href="/"><span class="blue">BETTER</span> <span class="green">BITES</span> <span class="yellow">@</span> <span class="red">BERG</span></a>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                {% if session.user_id %}
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/staff_meal_entries">Staff Meal Entries</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/student_survey">Student Survey</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/survey_results">Survey Results</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/student_register">Student Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/staff_register">Staff Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Student/Staff Log In</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary border text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main class="container p-5">
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="small text-center text-muted">
+            David Carey '22 | Weld Hall | Applied Math Concentrator
+        </footer>
+
+    </body>
+
+</html>

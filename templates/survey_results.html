@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Survey Results
+{% endblock %}
+
+{% block main %}
+    <!-- https://canvasjs.com/jquery-charts/column-chart/ (script in layout.html has code extracted from this website as well)-->
+    <div id="lunch-ratings" style="height: 300px; width: 100%;"></div>
+    <div id="dinner-ratings" style="height: 300px; width: 100%;"></div>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+{% endblock %}

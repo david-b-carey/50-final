@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Staff Meal Entries
+{% endblock %}
+
+{% block main %}
+    <form action="/staff_meal_entries" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Confirm Account Password" type="password">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="lunch" placeholder="Yesterday's Lunch" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" min="1" name="dinner" placeholder="Last Night's Dinner" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{% endblock %}
